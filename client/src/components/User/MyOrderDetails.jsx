@@ -41,11 +41,9 @@ const ConfirmOrder = () => {
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
-  const address = `${orders[id].shippingInfo.address}, ${
-    orders[id].shippingInfo.city
-  }, ${orders[id].shippingInfo.state}, ${
-    orders[id].shippingInfo.pinCode
-  }, ${`India`}`;
+  const address = `${orders[id].shippingInfo.address}, ${orders[id].shippingInfo.city
+    }, ${orders[id].shippingInfo.state}, ${orders[id].shippingInfo.pinCode
+    }, ${`India`}`;
 
   const delivery = 0;
 
@@ -55,7 +53,7 @@ const ConfirmOrder = () => {
         <Loader />
       ) : isAuthenticated ? (
         <>
-        <MetaData title="Order Details" />
+          <MetaData title="Order Details" />
           <div className="MyorderDetailsPage">
             <div className="confirmShippingArea">
               <div className="orderOverview">
@@ -83,7 +81,7 @@ const ConfirmOrder = () => {
                       {orders &&
                         orders[id].orderItems.map((item) => (
                           <Link
-                            to={`/my/order-details/${orders.length - 1 - id}`}
+                            to={`/product/${i.i._id}`}
                             key={item._id}
                             className="myOrderDetailsCard"
                           >
