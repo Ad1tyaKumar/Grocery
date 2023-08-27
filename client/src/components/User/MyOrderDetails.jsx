@@ -82,6 +82,7 @@ const ConfirmOrder = () => {
                         orders[id].orderItems.map((item) => (
                           <Link
                             to={`/product/${item.product}`}
+                            target="_blank"
                             key={item._id}
                             className="myOrderDetailsCard"
                           >
