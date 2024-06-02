@@ -10,8 +10,10 @@
 
 h3 {
   margin-top: 5%;
-  margin-left: 3%;
-  font-family: "Roboto";
+  margin-left: 5%;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 1.3vmax;
 }
 
 .brandsDiv {

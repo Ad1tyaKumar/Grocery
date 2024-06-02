@@ -39,6 +39,7 @@
 
 .ham-footer div p {
   font-size: 12px;
+  font-family: 'Poppins';
   margin-top: 6%;
   margin-bottom: 8%;
 }
@@ -63,6 +64,7 @@
   background-color: rgb(38, 165, 65);
   border: none;
   font-size: 16px;
+  font-family: 'Rubik';
   color: black;
   margin-top: 4%;
   text-decoration: none;
@@ -83,7 +85,9 @@
 }
 
 .nav-header > h1 {
-  font-family: "Roboto";
+  /* font-family: "Roboto"; */
+  font-family: 'Poppins';
+
   margin-top: 0.8vmax;
   margin-left: 4vmax;
   cursor: pointer;
@@ -103,7 +107,7 @@
   height: 100%;
   width: 35vw;
 
-  font: 500 1vmax "Roboto";
+  font: 500 1vmax "Poppins";
   background-color: #ffffff;
   border: none;
 
@@ -157,13 +161,14 @@
 }
 .deliverTo {
   margin-left: 2%;
-  font: 500 1vmax "Roboto";
+  font: 500 1vmax "Poppins";
   color: black;
   display: flex;
   align-items: center;
 }
 .deliverTo > p {
-  font-size: 90%;
+  font-size: 80%;
+  font-family: 'Poppins';
 }
 .pincodeWrap {
   position: absolute;
@@ -201,7 +206,8 @@
   flex-direction: column;
   align-items: center;
   font-size: 1vmax;
-  
+  font-family: 'Poppins';
+
 }
 .pincodeDropdown > div > div {
   width: 50%;
@@ -215,6 +221,7 @@
   border-radius: 2px 0 0 2px;
   border: 1px solid rgba(128, 128, 128, 0.475);
   font-size: 1vmax;
+  font-family: 'Poppins';
 }
 .pincodeDropdown > div > div > button{
   border-radius: 0px 2px 2px 0px;
@@ -286,7 +293,7 @@
   justify-content: center;
   border-radius: 60px;
   cursor: pointer;
-  font: 300 1vmax "Roboto";
+  font: 300 1vmax "Poppins";
   transition: all 0.5s;
 }
 
@@ -304,7 +311,7 @@
   justify-content: center;
   border-radius: 60px;
   cursor: pointer;
-  font: 600 1vmax "Roboto";
+  font: 600 1vmax "Poppins";
   transition: all 0.5s;
 }
 
@@ -329,7 +336,7 @@
   justify-content: space-evenly;
   align-items: center;
   color: white;
-  font-family: "Roboto";
+  font-family: "Poppins";
   font-size: 1vmax;
 }
 
@@ -338,6 +345,7 @@
   height: 4vh;
   width: auto;
   border-radius: 5px;
+  font-family: 'Rubik';
 }
 
 .nav-categories li:hover {
@@ -447,6 +455,7 @@
   padding: 0.8vmax;
   font-weight: 500;
   display: block;
+  font-family: 'Poppins';
 }
 
 .subCategory-link:hover {

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { clearErrors } from "../../actions/userActions";
+import { clearErrors, getUser } from "../../actions/userActions";
 import { getProduct } from "../../actions/productActions";
 import Loader from "../Loader/Loader";
 import ProductCard from "../Products/ProductCard";
@@ -41,7 +41,7 @@ const Home = () => {
   );
   const brandImages = Array.from(brandImg.keys());
   const dispatch = useDispatch();
-
+  const { isAuthenticated } = useSelector((state) => state.user);
   const { loading, products, error } = useSelector((state) => state.products);
   useEffect(() => {
     if (error) {
@@ -51,6 +51,9 @@ const Home = () => {
   }, [dispatch, error]);
   useEffect(() => {
     console.log('h');
+    if (!isAuthenticated) {
+      localStorage.removeItem("cartItems");
+    }
     dispatch(getProduct());
   }, [dispatch]);
   return !catergoryImg ? (

@@ -7,7 +7,7 @@ import {
   reomveItemsFromCart,
 } from "../../actions/cartActions";
 import Loader from "../Loader/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 
 //toast
@@ -61,7 +61,7 @@ const Cart = () => {
         <>
           {" "}
           <h1 className="myCart">My Cart({cartItems.length} Items) </h1>
-          <hr className="invisible"/>
+          <hr className="invisible" />
           <div className="cartbodyDiv">
             <div className="productListDiv">
               {cartItems &&

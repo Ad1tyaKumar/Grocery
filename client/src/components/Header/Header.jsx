@@ -453,9 +453,9 @@ const Header = () => {
             {loading1 ? (
               <CircularProgress size={20} />
             ) : (
-              <Link className="cartIcon" to={"/shopping-cart"}>
+              <Link className="cartIcon" to={!isAuthenticated ? "/auth/signin" : "/shopping-cart"}>
                 <ShoppingCartIcon />
-                {cartItems && cartItems.length ? (
+                {isAuthenticated && cartItems && cartItems.length ? (
                   <p>{cartItems.length}</p>
                 ) : (
                   <></>
