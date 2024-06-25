@@ -9,7 +9,7 @@ const Footer = () => {
         WhatsApp us: 9876543210 <br /> Call us: 09876543210 <br /> 8:00 AM to
         8:00 PM, 365 days
       </p>
-      <p>© 2023 All rights reserved.</p>
+      <p>© 2024 All rights reserved.</p>
     </div>
   );
 };

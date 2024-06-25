@@ -21,6 +21,9 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
+//Categories
+import categories from './Categories.jsx'
+
 //Images
 import staples from "../../images/staples.ico";
 import dairy from "../../images/dairy.ico";
@@ -36,6 +39,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const { loading: loading1, cartItems } = useSelector((state) => state.cart);
+  const { loading: productLoading, getBrands } = useSelector((state) => state.products)
   const [keyword, setKeyword] = useState("");
   const [profileOpen, setProfileOpen] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
@@ -49,76 +53,7 @@ const Header = () => {
     profileRef.current = node;
   };
 
-  const categories = [
-    [
-      "Staples",
-      [
-        "Atta Flours & Sooji",
-        "Dals & Pulses",
-        "Rice & Rice Products",
-        "Edible Oils",
-        "Masalas & Spcies",
-        "Salt, Sugar & Jaggery",
-      ],
-    ],
-    [
-      "Dairy & Bakery",
-      [
-        "Dairy",
-        "Toast & Khari",
-        "Cakes & Muffinss",
-        "Breads and Buns",
-        "Baked Cookies",
-        "Bakery Snacks",
-        "Cheese",
-        "Ghee",
-        "Paneer & Tofu",
-      ],
-    ],
-    [
-      "Snacks",
-      [
-        "Biscuits & Cookies",
-        "Noodle, Pasta, Vermicelli",
-        "Breakfast Cereals",
-        "Namkeen",
-        "Chocolates & Candies",
-        "Ready To Cook & Eat",
-        "Frozen Veggies & Snacks",
-        "Spreads, Sauces, Ketchup",
-        "Indian Sweets",
-        "Pickles & Chutney",
-        "Extracts & Flavouring",
-        "Hampers & Gourmet Gifts",
-      ],
-    ],
-    [
-      "Beverages",
-      [
-        "Tea",
-        "Coffee",
-        "Fruit juices",
-        "Energy & Soft Drinks",
-        "Health Drink & Supplement",
-        "Soda & Flavoured Water",
-      ],
-    ],
-    [
-      "Home Care",
-      [
-        "Detergents",
-        "Dishwash",
-        "All Purpose Cleaners",
-        "Fresheners & Repellents",
-        "Shoe Care",
-        "Pet Supplies",
-      ],
-    ],
-    [
-      "Kitchen",
-      ["Disposables", "Bottles", "Dishes & Containers", "Tablewares"],
-    ],
-  ];
+
   const drawerImages = [staples, dairy, snacks, beverages, homeCare, kitchen];
   const { pinCode, loading } = useSelector((state) => state.pinCode);
   const [invalid, setInvalid] = useState(false);
@@ -159,6 +94,9 @@ const Header = () => {
   const handleCategory = (category) => {
     history(`/products/&category=${category}`);
   };
+
+
+
   useEffect(() => {
     const body = document.querySelector("body");
     if (showBackdrop) {
@@ -382,7 +320,7 @@ const Header = () => {
                         other problems on the beta website, please email us on
                         email@logo.com
                       </p>
-                      © ecommerce.com 2023
+                      © ecommerce.com 2024
                     </div>
                   </Typography>
                 </Box>
@@ -394,7 +332,7 @@ const Header = () => {
               <h1>LOGO</h1>
             </Link>
           </div>
-          <div className="searchIcon">
+          <div className="searchIcon" onFocus={() => { }}>
             <input
               type="text"
               placeholder="Search"
