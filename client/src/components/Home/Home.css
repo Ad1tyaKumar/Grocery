@@ -18,15 +18,26 @@ h3 {
 
 .brandsDiv {
   display: flex;
-
+  flex-direction: row;
   /* justify-content: center; */
-  overflow-x: scroll;
+  overflow-x: hidden;
   overflow-y: hidden;
   /* scroll-snap-type: x mandatory; */
   width: 76.5vw;
   margin-left: 12%;
   margin-top: 2vmax;
   /* scrollbar-gutter: stable; */
+  box-shadow: 0px 0px 9px 0px #7f7272;
+  border-radius: 5px;
+  cursor: default;
+}
+
+
+.brandsDiv > div{
+  display: flex;
+  flex-direction: row;
+  cursor: default;
+
 }
 
 .brandsDiv::-webkit-scrollbar {
@@ -47,22 +58,36 @@ h3 {
 }
 .brandsContainer {
   display: flex;
-}
-.brandImg {
-  /* margin-top: 5%; */
-  margin-right: 8%;
-  scroll-snap-align: center;
-  width: 100%;
+  animation: swipe var(--speed) linear infinite backwards;
+  cursor: default;
+
+  /* margin-right: 18vw; */
 }
 
-.brandImg:last-child {
-  margin-right: 0;
+@keyframes swipe {
+  0% {
+    transform: translate(0);
+  }
+  
+  100% {
+    transform: translate(-100%);
+  }
 }
+
+.brandImg {
+  /* margin-top: 5%; */
+  display: flex;
+  margin-right: 8vw;
+  scroll-snap-align: center;
+  width: 18vw;
+}
+
+
 
 .brandImg > img {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.479);
   border-radius: 3%;
-  width: 20vw;
+  width: 18vw;
 }
 
 .productsDiv {
@@ -106,6 +131,15 @@ h3 {
   .productsDiv {
     margin: 2vmax auto;
     width: 90vw;
+  }
+  .brandsDiv{
+    overflow-x: scroll;
+  }
+  .brandsContainer{
+    animation: none;
+  }
+  .brandsDiv::-webkit-scrollbar {
+    display: none;
   }
 }
 @media screen and(max-width:375px) {

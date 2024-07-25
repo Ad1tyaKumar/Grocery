@@ -167,7 +167,7 @@
   align-items: center;
 }
 .deliverTo > p {
-  font-size: 80%;
+  font-size: 70%;
   font-family: 'Poppins';
 }
 .pincodeWrap {
@@ -305,7 +305,7 @@
   color: black;
   min-width: 6vw;
   padding: 0.1%;
-  height: 5vh;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -508,15 +508,17 @@
 .searchBarDiv > div {
   display: flex;
   justify-content: center;
-  height: 3vh;
+  height: 3vmax;
   width: 50vw;
 }
 .searchBarDiv > div > input {
-  /* height: 3vh; */
+  /* height: 3vmax; */
   outline: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-
+  font-size: 1.5vmax;
+  width: 30vw;
+  padding: 5px;
   border: 1px solid rgba(128, 128, 128, 0.45);
 }
 .searchBarDiv > div > button {
@@ -524,7 +526,14 @@
   border-bottom-right-radius: 5px;
   background-color: rgb(38, 165, 65);
   color: white;
-  height: 3vh;
+  height: 3vmax;
+  padding: 0 3%;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.searchBarDiv > div > button > svg{
+  font-size: 2.5vmax;
 }
 .logo {
   color: black;
@@ -579,6 +588,9 @@
     font-size: 1.5vmax;
     padding: 0.5vmax;
   }
+  .logo{
+    font-size: 1.5vmax;
+  }
   .pincodeDropdown {
     font-size: 2vmax;
   }
@@ -600,6 +612,9 @@
   }
   .deliverToDiv {
     width: 40%;
+  }
+  .deliverTo > p {
+    font-size: 60%;
   }
   .pincodeWrap {
     right: 15%;
@@ -631,6 +646,7 @@
   .deliverToDiv {
     width: 50%;
   }
+  
   .navDiv {
     width: 30%;
   }
@@ -658,6 +674,7 @@
   .navDiv {
     width: 40%;
   }
+  
 }
 @media screen and (max-width: 450px) {
   .navDiv {

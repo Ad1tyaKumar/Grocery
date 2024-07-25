@@ -8,7 +8,7 @@ export const cartReducer = createReducer(
 
     shippingInfo: localStorage.getItem("shippingInfo")
       ? JSON.parse(localStorage.getItem("shippingInfo"))
-      : [],
+      : {},
   },
   {
     ADD_TO_CART: (state, action) => {
@@ -43,5 +43,11 @@ export const cartReducer = createReducer(
         shippingInfo: action.payload,
       };
     },
+    CLEAR_DATA: (state, action) => {
+      return {
+        cartItems: [],
+        shippingInfo: {}
+      }
+    }
   }
 );

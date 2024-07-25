@@ -77,6 +77,7 @@ const SignIn = () => {
       })
       .catch((error) => {
         setLoading1(false);
+        console.log(error);
         toast.error("There was an error sending the SMS! Try Reloading The Page");
         // ...
       });

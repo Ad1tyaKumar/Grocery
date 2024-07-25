@@ -46,7 +46,7 @@ import {
 } from "../constants/userConstants.js";
 import axios from "axios";
 import backEndUrl from "../host";
-import { saveShippingInfo } from "./cartActions.js";
+import { clearData, saveShippingInfo } from "./cartActions.js";
 
 //sendOTP
 export const checkUser = (phoneNo) => async (dispatch) => {
@@ -122,7 +122,9 @@ export const logout = () => async (dispatch) => {
     });
 
     dispatch({ type: LOGOUT_SUCCESS });
+    clearData();
   } catch (error) {
+    console.log(error);
     dispatch({ type: LOGOUT_FAIL, payload: error.response.data.msg });
   }
 };
@@ -140,6 +142,9 @@ export const getUser = () => async (dispatch) => {
       `${backEndUrl}/api/v1/user`,
       config
     );
+    if (!data.isAuthenticated) {
+      dispatch(clearData());
+    }
     dispatch({ type: GET_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

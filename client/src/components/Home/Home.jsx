@@ -50,6 +50,9 @@ const Home = () => {
     }
   }, [dispatch, error]);
   useEffect(() => {
+    console.log(window.innerWidth);
+  }, [window.innerWidth])
+  useEffect(() => {
     console.log('h');
     if (!isAuthenticated) {
       localStorage.removeItem("cartItems");
@@ -75,6 +78,11 @@ const Home = () => {
           <Carousel
             autoPlay={false}
             swipe={true}
+            indicatorContainerProps={{
+              style: {
+                marginTop: 0
+              }
+            }}
           >
             {catergoryImg.map((i, index) => (
               <Link to={"/products/&category=Staples"}>
@@ -91,15 +99,38 @@ const Home = () => {
       }
       <h3>Top Brands</h3>
       <div className="brandsDiv">
-        <div className="brandsContainer">
-          {brandImages.map((i, index) => (
-            <Link
-              className="brandImg"
-              to={`/products/&brand=${brandImg.get(i)}`}
-            >
-              <img src={i} alt={index} />
-            </Link>
-          ))}
+        <div>
+          <div className="brandsContainer" style={{ "--speed": "8000ms" }}>
+            {brandImages.map((i, index) => {
+
+              return (
+                <Link
+
+                  className={`brandImg`}
+                  to={`/products/&brand=${brandImg.get(i)}`}
+                >
+                  <img src={i} alt={index} />
+                </Link>
+              )
+            })}
+          </div>
+          {
+            window.innerWidth <= 800 ? <></> :
+              <div className="brandsContainer" style={{ "--speed": "8000ms" }}>
+                {brandImages.map((i, index) => {
+
+                  return (
+                    <Link
+
+                      className={`brandImg`}
+                      to={`/products/&brand=${brandImg.get(i)}`}
+                    >
+                      <img src={i} alt={index} />
+                    </Link>
+                  )
+                })}
+              </div>
+          }
         </div>
       </div>
 

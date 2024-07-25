@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  CLEAR_DATA,
   REMOVE_CART_ITEM,
   SAVE_SHIPPING_INFO,
 } from "../constants/cartConstants";
@@ -66,7 +67,7 @@ export const getItems = () => async (dispatch, getState) => {
     );
 
     localStorage.setItem("cartItems", JSON.stringify(data1.cart));
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const reomveItemsFromCart = (id) => async (dispatch, getState) => {
@@ -90,7 +91,7 @@ export const saveShippingInfo = (data) => async (dispatch, getState) => {
   });
   await axios.post(
     `${backEndUrl}/api/v1/address/save`,
-    {shippingInfo:getState().cart.shippingInfo},
+    { shippingInfo: getState().cart.shippingInfo },
     { withCredentials: true }
   );
   localStorage.setItem(
@@ -98,3 +99,12 @@ export const saveShippingInfo = (data) => async (dispatch, getState) => {
     JSON.stringify(getState().cart.shippingInfo)
   );
 };
+
+
+export const clearData = () => (dispatch, getState) => {
+  localStorage.removeItem("shippingInfo");
+  localStorage.removeItem("cartItems");
+  dispatch({
+    type: CLEAR_DATA
+  });
+}
