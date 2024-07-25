@@ -1,3 +1,3 @@
-const backEndUrl = "https://grocery-psi-seven.vercel.app";
+const backEndUrl = "http://localhost:4001";
 
 export default backEndUrl

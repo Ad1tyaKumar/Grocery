@@ -464,8 +464,8 @@ const Header = () => {
                 )}
               </>
             ) : (
-              <Link to={"/auth/signin"}>
-                <div className="helloBox">
+              <Link className="helloBox" to={"/auth/signin"}>
+                <div >
                   <h4>Sign In</h4>
                 </div>
               </Link>
