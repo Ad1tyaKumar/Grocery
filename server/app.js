@@ -32,7 +32,7 @@ app.use(
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(fileUpload());
-
+app.set('trust proxy', 1)
 app.use(session({
   secret: "adsfjlasdfuqef",
   resave: false,
@@ -40,11 +40,11 @@ app.use(session({
   store: new MemoryStore({
     checkPeriod: 86400000
   }),
-  proxy : true,
+  // key: 'sid',
+  proxy: true,
   cookie: {
-    secure: true,
-    httpOnly: false,
-    sameSite: 'none'
+    secure: process.env.ENV === 'DEVELOPMENT' ? false : true,
+    sameSite: process.env.ENV === 'DEVELOPMENT' ? "lax" : "none"
   }
 }))
 
