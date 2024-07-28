@@ -72,8 +72,8 @@ export const login = async (profile, done, method) => {
 
 export const loginsuccess = catchAsyncErrors(async (req, res, next) => {
   console.log(req.isAuthenticated(), 74);
-  const user = await User.findById(req.user._id);
   if (req.isAuthenticated()) {
+    const user = await User.findById(req.user._id);
     sendCookie(user, 200, res);
   } else {
     res.json({
