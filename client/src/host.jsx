@@ -1,3 +1,3 @@
-const backEndUrl = "https://grocery-psi-seven.vercel.app";
+const backEndUrl = "https://grocery-0a0t.onrender.com";
 
 export default backEndUrl
