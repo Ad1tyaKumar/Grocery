@@ -13,6 +13,9 @@ import passport from "passport";
 import { login } from "./controller/userController.js";
 import { Strategy as OAuth2Strategy } from 'passport-google-oauth2';
 import { Strategy as TwitterStrategy } from 'passport-twitter'
+import memorystore from 'memorystore'
+
+const MemoryStore = memorystore(session);
 
 dotenv.config({ path: './config/config.env' })
 
@@ -34,6 +37,15 @@ app.use(session({
   secret: "adsfjlasdfuqef",
   resave: false,
   saveUninitialized: true,
+  store: new MemoryStore({
+    checkPeriod: 86400000
+  }),
+  proxy : true,
+  cookie: {
+    secure: true,
+    httpOnly: false,
+    sameSite: 'none'
+  }
 }))
 
 // setuppassport
@@ -57,7 +69,7 @@ passport.use(
     consumerKey: process.env.TWITTER_CONSUMER_KEY,
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
     callbackURL: `/oauth/callback/twitter`,
-    includeEmail : true
+    includeEmail: true
   },
     async (accessToken, refreshToken, profile, done) => {
       login(profile, done, "twitter");
@@ -81,7 +93,7 @@ app.get("/auth/google/callback", passport.authenticate("google", {
 }))
 
 app.get('/auth/twitter',
-  passport.authenticate('twitter', {scope : ["profile, email"]}));
+  passport.authenticate('twitter', { scope: ["profile, email"] }));
 
 app.get('/oauth/callback/twitter',
   passport.authenticate('twitter', {
