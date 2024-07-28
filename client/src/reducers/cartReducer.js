@@ -11,6 +11,12 @@ export const cartReducer = createReducer(
       : {},
   },
   {
+    CART_INIT:(state, action)=>{
+      return {
+        ...state,
+        cartItems : action.payload
+      }
+    },
     ADD_TO_CART: (state, action) => {
       const item = action.payload;
       const isItemExists = state.cartItems.find(

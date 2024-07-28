@@ -261,7 +261,7 @@ const Header = () => {
                       </Link>
                       <Divider />
                       <Link
-                        to={"/my/orders"}
+                        to={!isAuthenticated ? "/auth/signin" : "/my/orders"}
                         className="link"
                         onClick={toggleDrawer}
                       >
@@ -270,7 +270,7 @@ const Header = () => {
                       <Divider />
                       <Link
                         className="link"
-                        to={"/shopping-cart"}
+                        to={!isAuthenticated ? "/auth/signin" : "/shopping-cart"}
                         onClick={toggleDrawer}
                       >
                         <p>Cart</p>
@@ -339,7 +339,9 @@ const Header = () => {
               onKeyDown={handleKeyPress}
               onChange={(e) => setKeyword(e.target.value)}
             />
-            <SearchIcon />
+            <div onClick={searchSubmitHandler}>
+              <SearchIcon />
+            </div>
           </div>
           <div className="navDiv">
             {loading ? (

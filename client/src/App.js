@@ -27,6 +27,7 @@ import MyOrders from "./components/User/MyOrders.jsx";
 import MyOrderDetails from "./components/User/MyOrderDetails.jsx";
 
 import ProcessOrder from "./components/admin/ProcessOrder";
+import Validate from "./components/User/Validate.jsx";
 function App() {
   return (
     <>
@@ -49,6 +50,12 @@ function App() {
                 <SignIn />
                 <Footer />
               </>
+            }
+          />
+          <Route 
+            path="/auth/validate"
+            element = {
+              <Validate />
             }
           />
           <Route

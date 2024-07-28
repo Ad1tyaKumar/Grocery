@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  CART_INIT,
   CLEAR_DATA,
   REMOVE_CART_ITEM,
   SAVE_SHIPPING_INFO,
@@ -39,6 +40,7 @@ export const getItems = () => async (dispatch, getState) => {
     let { data } = await axios.get(`${backEndUrl}/api/v1/cart/all`, {
       withCredentials: true,
     });
+    console.log(data.cart, 42);
     data.cart.forEach(async (element) => {
       const { data } = await axios.get(
         `${backEndUrl}/api/v1/product/${element.product}`
@@ -65,7 +67,7 @@ export const getItems = () => async (dispatch, getState) => {
         withCredentials: true,
       }
     );
-
+    dispatch({ type: CART_INIT, payload: data1.cart });
     localStorage.setItem("cartItems", JSON.stringify(data1.cart));
   } catch (error) { }
 };

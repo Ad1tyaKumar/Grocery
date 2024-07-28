@@ -39,7 +39,7 @@
 
 .ham-footer div p {
   font-size: 12px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   margin-top: 6%;
   margin-bottom: 8%;
 }
@@ -64,7 +64,7 @@
   background-color: rgb(38, 165, 65);
   border: none;
   font-size: 16px;
-  font-family: 'Rubik';
+  font-family: "Rubik";
   color: black;
   margin-top: 4%;
   text-decoration: none;
@@ -86,7 +86,7 @@
 
 .nav-header > h1 {
   /* font-family: "Roboto"; */
-  font-family: 'Poppins';
+  font-family: "Poppins";
 
   margin-top: 0.8vmax;
   margin-left: 4vmax;
@@ -131,7 +131,12 @@
   border-radius: 3px;
   border: 1px solid rgb(0, 0, 0, 0.267);
 }
-.searchIcon > svg {
+.searchIcon > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchIcon > div > svg {
   /* position: absolute; */
   right: 0;
 }
@@ -151,7 +156,7 @@
 
   align-items: center;
 }
-.deliverToDivSkeleton{
+.deliverToDivSkeleton {
   width: 30%;
   height: 80%;
   background-color: #ffffff;
@@ -168,7 +173,7 @@
 }
 .deliverTo > p {
   font-size: 70%;
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 .pincodeWrap {
   position: absolute;
@@ -206,8 +211,7 @@
   flex-direction: column;
   align-items: center;
   font-size: 1vmax;
-  font-family: 'Poppins';
-
+  font-family: "Poppins";
 }
 .pincodeDropdown > div > div {
   width: 50%;
@@ -221,13 +225,13 @@
   border-radius: 2px 0 0 2px;
   border: 1px solid rgba(128, 128, 128, 0.475);
   font-size: 1vmax;
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
-.pincodeDropdown > div > div > button{
+.pincodeDropdown > div > div > button {
   border-radius: 0px 2px 2px 0px;
   background-color: rgb(38, 165, 65);
 }
-.pincodeDropdown > div > div > button>svg{
+.pincodeDropdown > div > div > button > svg {
   font-size: 1.5vmax;
   color: white;
 }
@@ -345,7 +349,7 @@
   height: 4vh;
   width: auto;
   border-radius: 5px;
-  font-family: 'Rubik';
+  font-family: "Rubik";
 }
 
 .nav-categories li:hover {
@@ -439,7 +443,7 @@
   align-items: center;
   font-weight: 400;
 }
-.profileDropDown > a > svg{
+.profileDropDown > a > svg {
   margin-right: 5%;
 }
 
@@ -455,7 +459,7 @@
   padding: 0.8vmax;
   font-weight: 500;
   display: block;
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 
 .subCategory-link:hover {
@@ -529,10 +533,10 @@
   height: 3vmax;
   padding: 0 3%;
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-.searchBarDiv > div > button > svg{
+.searchBarDiv > div > button > svg {
   font-size: 2.5vmax;
 }
 .logo {
@@ -542,11 +546,10 @@
   .cartIcon {
     font-size: 3vmax;
   }
-  .cartIcon > p{
+  .cartIcon > p {
     top: 5%;
-    right:  5%;
+    right: 5%;
   }
- 
 }
 @media screen and (max-width: 1000px) {
   .deliverTo {
@@ -588,24 +591,23 @@
     font-size: 1.5vmax;
     padding: 0.5vmax;
   }
-  .logo{
+  .logo {
     font-size: 1.5vmax;
   }
   .pincodeDropdown {
     font-size: 2vmax;
   }
-  .nav-header{
+  .nav-header {
     height: 6vmax;
   }
   .nav-header > input {
     width: 25vw;
-    right: 52%; 
+    right: 52%;
     font-size: 2vmax;
   }
   .searchIcon {
     right: 52.5%;
   }
-  
 
   .navDiv {
     width: 35%;
@@ -646,7 +648,7 @@
   .deliverToDiv {
     width: 50%;
   }
-  
+
   .navDiv {
     width: 30%;
   }
@@ -674,7 +676,6 @@
   .navDiv {
     width: 40%;
   }
-  
 }
 @media screen and (max-width: 450px) {
   .navDiv {

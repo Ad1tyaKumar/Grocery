@@ -1,9 +1,11 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
-import { User } from "../model/userModel.js";
+import { SocialMethods, User } from "../model/userModel.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import sendCookie from "../utils/sendCookie.js";
 import jwt from "jsonwebtoken";
 import cloudinary from "cloudinary";
+import passport from "passport";
+import e from "express";
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {
   const { token } = req.cookies;
@@ -48,12 +50,38 @@ export const register = catchAsyncErrors(async (req, res, next) => {
   sendCookie(user, 201, res);
 });
 
-export const login = catchAsyncErrors(async (req, res, next) => {
-  const { phoneNo } = req.body;
-  const user = await User.findOne({ phoneNo });
+export const login = async (profile, done, method) => {
+  try {
+    let user = await User.findOne({ socialId: profile.id });
 
-  sendCookie(user, 200, res);
-});
+    if (!user) {
+      user = await User.create({
+        socialId: profile.id,
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        profileImg: profile.photos[0].value,
+        socialMethod: method
+      });
+      await user.save();
+    }
+    return done(null, user)
+  } catch (error) {
+    return done(error, null)
+  }
+}
+
+export const loginsuccess = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.isAuthenticated(), 74);
+  const user = await User.findById(req.user._id);
+  if (req.isAuthenticated()) {
+    sendCookie(user, 200, res);
+  } else {
+    res.json({
+      success: false,
+      msg: 'not authorized!'
+    })
+  }
+})
 
 //logout user
 export const logout = (req, res) => {

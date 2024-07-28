@@ -9,6 +9,7 @@ import {
   getPin,
   getUser,
   login,
+  loginsuccess,
   logout,
   register,
   savePin,
@@ -21,7 +22,7 @@ const userRouter = express.Router();
 
 userRouter.route("/checkUser").post(checkUser);
 userRouter.route("/register").post(register);
-userRouter.route("/login").post(login);
+userRouter.route("/login/success").get(loginsuccess);
 userRouter.route("/logout").get(logout);
 userRouter.route("/user").get(getUser).patch(updateUserInfo);
 userRouter.route("/user/pincode").post(savePin).get(getPin);

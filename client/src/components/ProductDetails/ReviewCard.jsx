@@ -2,7 +2,7 @@ import { Rating } from "@mui/lab";
 import React from "react";
 import profilePng from "../../images/Profile.png";
 import { Edit } from "@mui/icons-material";
-const ReviewCard = ({ review, setOpen, setRating, setComment, user ,setIsEditing}) => {
+const ReviewCard = ({ review, setOpen, setRating, setComment, user, setIsEditing }) => {
   const options = {
     value: review.rating,
     readOnly: true,
@@ -16,7 +16,7 @@ const ReviewCard = ({ review, setOpen, setRating, setComment, user ,setIsEditing
   };
   return (
     <div className="reviewCard">
-      <img src={profilePng} alt="User" />
+      <img src={review.profileImg ? review.profileImg : profilePng} alt="User" />
       {user && user._id === review.user && <Edit onClick={editHandler} />}
       <p>{review.name}</p>
       <Rating {...options} />

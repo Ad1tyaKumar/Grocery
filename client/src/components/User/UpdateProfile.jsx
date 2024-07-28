@@ -34,7 +34,22 @@ const UpdateProfile = () => {
   const [otp, setOtp] = useState(0);
   const [loading1, setLoading1] = useState(false);
   const updateProfileSubmit = () => {
-    onOTPVerify(otp);
+    // onOTPVerify(otp);
+    const myForm = new FormData();
+
+    myForm.set("name", name);
+    if (email !== "") {
+      myForm.set("email", email);
+    }
+    myForm.set("phoneNo", phoneNo);
+    if (phoneNo.toString().length !== 10) {
+      toast.error("Enter a valid phone number!");
+
+      return;
+    }
+    toast.success("Profile Updated Successfully!");
+    dispatch(updateProfile(myForm));
+    history('/user/me');
   };
 
   useEffect(() => {
@@ -61,79 +76,79 @@ const UpdateProfile = () => {
     }
   }, [dispatch, error, history, user, isUpdated]);
 
-  const onCaptchVerify = () => {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(
-        auth,
-        "recaptcha-container",
-        {
-          size: "invisible",
-          callback: (response) => {
-            // reCAPTCHA solved, allow signInWithPhoneNumber.
-            // ...
-          },
-          "expired-callback": () => {
-            toast.error("reCAPTCHA Expired! Please Try Again");
-          },
-        },
-        auth
-      );
-    }
-  };
+  // const onCaptchVerify = () => {
+  //   if (!window.recaptchaVerifier) {
+  //     window.recaptchaVerifier = new RecaptchaVerifier(
+  //       auth,
+  //       "recaptcha-container",
+  //       {
+  //         size: "invisible",
+  //         callback: (response) => {
+  //           // reCAPTCHA solved, allow signInWithPhoneNumber.
+  //           // ...
+  //         },
+  //         "expired-callback": () => {
+  //           toast.error("reCAPTCHA Expired! Please Try Again");
+  //         },
+  //       },
+  //       auth
+  //     );
+  //   }
+  // };
   // onCaptchVerify();
-  const onSignUp = () => {
-    setLoading1(true);
-    onCaptchVerify();
-    const appVerifier = window.recaptchaVerifier;
-    const formatPh = `+91${phoneNo}`;
-    signInWithPhoneNumber(auth, formatPh, appVerifier)
-      .then((confirmationResult) => {
-        // SMS sent.
-        toast.success("A six Digit Code Sent to your number");
-        setLoading1(false);
-        setShowOtpBox(true);
-        setSent(true);
+  // const onSignUp = () => {
+  //   setLoading1(true);
+  //   onCaptchVerify();
+  //   const appVerifier = window.recaptchaVerifier;
+  //   const formatPh = `+91${phoneNo}`;
+  //   signInWithPhoneNumber(auth, formatPh, appVerifier)
+  //     .then((confirmationResult) => {
+  //       // SMS sent.
+  //       toast.success("A six Digit Code Sent to your number");
+  //       setLoading1(false);
+  //       setShowOtpBox(true);
+  //       setSent(true);
 
-        window.confirmationResult = confirmationResult;
-        // ...
-      })
-      .catch((error) => {
-        setLoading1(false);
-        toast.error(
-          "There was an error sending the SMS! Try Reloading The Page"
-        );
-        // ...
-      });
-  };
-  const onOTPVerify = (otp) => {
-    setLoading1(true);
-    window.confirmationResult
-      .confirm(otp)
-      .then((result) => {
-        // User signed in successfully.
+  //       window.confirmationResult = confirmationResult;
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       setLoading1(false);
+  //       toast.error(
+  //         "There was an error sending the SMS! Try Reloading The Page"
+  //       );
+  //       // ...
+  //     });
+  // };
+  // const onOTPVerify = (otp) => {
+  //   setLoading1(true);
+  //   window.confirmationResult
+  //     .confirm(otp)
+  //     .then((result) => {
+  //       // User signed in successfully.
 
-        setLoading1(false);
-        toast.success("OTP verifed!");
-        const myForm = new FormData();
+  //       setLoading1(false);
+  //       toast.success("OTP verifed!");
+  //       const myForm = new FormData();
 
-        myForm.set("name", name);
-        if (email !== "") {
-          myForm.set("email", email);
-        }
-        myForm.set("phoneNo", phoneNo);
+  //       myForm.set("name", name);
+  //       if (email !== "") {
+  //         myForm.set("email", email);
+  //       }
+  //       myForm.set("phoneNo", phoneNo);
 
-        toast.success("Profile Updated Successfully!");
-        dispatch(updateProfile(myForm));
-        history('/user/me');
-        // ...
-      })
-      .catch((error) => {
-        // User couldn't sign in (bad verification code?)
-        // ...
-        setLoading1(false);
-        toast.error("Incorrect OTP please try again!");
-      });
-  };
+  //       toast.success("Profile Updated Successfully!");
+  //       dispatch(updateProfile(myForm));
+  //       history('/user/me');
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       // User couldn't sign in (bad verification code?)
+  //       // ...
+  //       setLoading1(false);
+  //       toast.error("Incorrect OTP please try again!");
+  //     });
+  // };
 
   return (
     <>
@@ -141,7 +156,7 @@ const UpdateProfile = () => {
         <Loader />
       ) : (
         <>
-        <MetaData title={`Update Profile`} />
+          <MetaData title={`Update Profile`} />
           <div className="updateProfileContainer">
             <div className="updateProfileBox">
               <h2 className="updateProfileHeading">Update Profile</h2>
@@ -161,6 +176,7 @@ const UpdateProfile = () => {
                 <div className="updateProfileEmail">
                   <MailOutline />
                   <input
+                    disabled
                     type="email"
                     placeholder="Email"
                     required
@@ -176,9 +192,10 @@ const UpdateProfile = () => {
                     placeholder="Number"
                     required
                     name="number"
-                    value={phoneNo} 
-                    disabled={sent}
-                    onChange={(e) => setPhoneNo(e.target.value)}
+                    value={phoneNo}
+                    onChange={(e) => {
+                      setPhoneNo(e.target.value)
+                    }}
                   />
                 </div>
                 {sent ? (
@@ -200,22 +217,22 @@ const UpdateProfile = () => {
                   className="updateProfileBtn"
                   type="button"
                   onClick={() => {
-                    if (sent) {
-                      updateProfileSubmit();
-                    } else {
-                      onSignUp();
-                    }
+                    updateProfileSubmit();
+                    // if (sent) {
+                    // } else {
+                    //   onSignUp();
+                    // }
                   }}
                 >
                   {loading1 && (
                     <CircularProgress className="loadingCircle" size={20} />
                   )}
-                  {sent ? <>Update</> : <>Get OTP</>}
+                  {1 ? <>Update</> : <>Get OTP</>}
                 </button>
               </form>
             </div>
           </div>
-          <div id="recaptcha-container"></div>
+          {/* <div id="recaptcha-container"></div> */}
           <ToastContainer />
         </>
       )}

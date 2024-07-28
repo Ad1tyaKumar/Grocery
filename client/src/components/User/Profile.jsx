@@ -116,7 +116,7 @@ const Profile = () => {
               <h1>My Profile</h1>
               <img
                 className="profileImg"
-                src={Profile1}
+                src={user.profileImg}
                 alt={user && user.name}
               />
               <Link to="/me/update">Edit Profile</Link>

@@ -119,79 +119,79 @@ const ProductDetails = () => {
       ) : (
         <>
 
-        
-        <MetaData title={`${product.name} -- Grocery`} />
-        <div className="productDiv">
-          <Carousel className="imageDiv" swipe={true} autoPlay={false}>
-            {product.images &&
-              product.images.map((i, index) => (
-                <img
-                  className="carousel-img"
-                  src={i.url}
-                  key={index}
-                  alt={`${index} Slide`}
-                />
-              ))}
-          </Carousel>
-          <div className="descriptionDiv">
-            <h3>{product.name}</h3>
-            <p className="productBrand">
-              Brand:
-              <b>{product.brand && product.brand.toUpperCase()}</b>
-            </p>
-            <h2>{`₹${product.price}`}</h2>
-            <a href="#reviewDiv">
-              <Rating {...options} className="rating" />
-              <p>{`(${product.numOfReviews} Reviews)`}</p>
-            </a>
-            <p>
-              Status:
-              <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                {product.Stock < 1 ? "OutOfStock" : "InStock"}
-              </b>
-            </p>
-            <hr />
-            <div className="cartDiv">
-              <div className="quantityDiv">
-                <button className="minus" onClick={decreaseQuantity}>
-                  -
-                </button>
-                <input
-                  className="number"
-                  readOnly
-                  type="number"
-                  value={quantity}
-                />
-                <button className="add" onClick={increaseQuantity}>
-                  +
+
+          <MetaData title={`${product.name} -- Grocery`} />
+          <div className="productDiv">
+            <Carousel className="imageDiv" swipe={true} autoPlay={false}>
+              {product.images &&
+                product.images.map((i, index) => (
+                  <img
+                    className="carousel-img"
+                    src={i.url}
+                    key={index}
+                    alt={`${index} Slide`}
+                  />
+                ))}
+            </Carousel>
+            <div className="descriptionDiv">
+              <h3>{product.name}</h3>
+              <p className="productBrand">
+                Brand:
+                <b>{product.brand && product.brand.toUpperCase()}</b>
+              </p>
+              <h2>{`₹${product.price}`}</h2>
+              <a href="#reviewDiv">
+                <Rating {...options} className="rating" />
+                <p>{`(${product.numOfReviews} Reviews)`}</p>
+              </a>
+              <p>
+                Status:
+                <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
+                  {product.Stock < 1 ? "OutOfStock" : "InStock"}
+                </b>
+              </p>
+              <hr />
+              <div className="cartDiv">
+                <div className="quantityDiv">
+                  <button className="minus" onClick={decreaseQuantity}>
+                    -
+                  </button>
+                  <input
+                    className="number"
+                    readOnly
+                    type="number"
+                    value={quantity}
+                  />
+                  <button className="add" onClick={increaseQuantity}>
+                    +
+                  </button>
+                </div>
+                <button
+                  disabled={product.Stock < 1 ? true : false}
+                  className="addToCartButton"
+                  onClick={addToCart}
+                >
+                  <p>Add To Cart</p>
                 </button>
               </div>
-              <button
-                disabled={product.Stock < 1 ? true : false}
-                className="addToCartButton"
-                onClick={addToCart}
-              >
-                <p>Add To Cart</p>
-              </button>
-            </div>
-            <hr />
-            <div className="addressDiv">
-              <h2>Deliver To:-</h2>
-              {user && user.shippingAddress ? (
-                <>
-                  <br />
-                  <p>{user.shippingAddress.address}</p>
-                  <p>State: {user.shippingAddress.state}</p>
-                  <p>City: {user.shippingAddress.city}</p>
-                  <p>PINCODE: {user.shippingAddress.pinCode}</p>
-                  <p>Phone Number: +91 {user.shippingAddress.phoneNo}</p>
-                </>
-              ) : (
-                <></>
-              )}
+              <hr />
+              <div className="addressDiv">
+                <h2>Deliver To:-</h2>
+                {user && user.shippingAddress ? (
+                  <>
+                    <br />
+                    <p>{user.shippingAddress.address}</p>
+                    <p>State: {user.shippingAddress.state}</p>
+                    <p>City: {user.shippingAddress.city}</p>
+                    <p>PINCODE: {user.shippingAddress.pinCode}</p>
+                    <p>Phone Number: +91 {user.shippingAddress.phoneNo}</p>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
           </div>
-        </div>
         </>
       )}
       <div className="productDescriptionDiv">
@@ -201,23 +201,34 @@ const ProductDetails = () => {
         <hr />
       </div>
 
-      <h1 className="relatedProductsDiv">Related Products</h1>
+      {
+        products
+          .filter(
+            (p) =>
+              p.subCategory === product.subCategory && p._id !== product._id
+          ).length ?
+        <h1 className="relatedProductsDiv">Related Products</h1> : <></>}
       {loading1 ? (
         <Loader />
       ) : (
-        <div className="productsSlide">
-          {products &&
-            products
-              .filter(
-                (p) =>
-                  p.subCategory === product.subCategory && p._id !== product._id
-              )
-              .map((i, index) => (
-                <>
-                  <ProductCard i={i} />
-                </>
-              ))}
-        </div>
+        products
+          .filter(
+            (p) =>
+              p.subCategory === product.subCategory && p._id !== product._id
+          ).length ?
+          <div className="productsSlide">
+            {products &&
+              products
+                .filter(
+                  (p) =>
+                    p.subCategory === product.subCategory && p._id !== product._id
+                )
+                .map((i, index) => (
+                  <>
+                    <ProductCard i={i} />
+                  </>
+                ))}
+          </div> : <></>
       )}
       <div className="submitReviewDiv">
         <h1>Reviews</h1>
@@ -258,7 +269,7 @@ const ProductDetails = () => {
             cols="30"
             rows="5"
           ></textarea>
-          <p className={comment.length>250 ? 'redColor':""}>
+          <p className={comment.length > 250 ? 'redColor' : ""}>
             {`${comment.length}/250`}
           </p>
           <DialogActions>
@@ -270,7 +281,7 @@ const ProductDetails = () => {
             >
               Cancel
             </Button>
-            <Button disabled={comment.length>250 || !rating} onClick={reviewSubmitHandler}>Submit</Button>
+            <Button disabled={comment.length > 250 || !rating} onClick={reviewSubmitHandler}>Submit</Button>
           </DialogActions>
         </DialogContent>
       </Dialog>
@@ -299,7 +310,7 @@ const ProductDetails = () => {
 
       <ToastContainer />
     </div>
-    
+
   );
 };
 

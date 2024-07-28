@@ -65,6 +65,9 @@ const productSchema = new mongoose.Schema({
                 type: Number,
                 requried: true
             },
+            profileImg:{
+                type: String,
+            },
             comment: {
                 type: String,
                 requried: true

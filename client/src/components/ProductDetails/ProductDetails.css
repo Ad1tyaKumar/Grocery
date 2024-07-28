@@ -269,6 +269,8 @@ button {
   font: 400 1rem "Roboto";
 }
 
+
+
 .reviewsDiv {
   display: flex;
   overflow-x: auto;
@@ -309,6 +311,8 @@ button {
 }
 .reviewCard > img {
   width: 5vmax;
+  border-radius: 100%;
+
 }
 .reviewCard > p {
   color: rgba(0, 0, 0, 0.836);

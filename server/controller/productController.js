@@ -142,6 +142,7 @@ export const createProductReview = catchAsyncErrors(async (req, res, next) => {
     const review = {
         user: req.user._id,
         name: req.user.name,
+        profileImg : req.user.profileImg,
         rating: Number(rating),
         comment,
     }

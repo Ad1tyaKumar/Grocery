@@ -97,8 +97,10 @@ h3 {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
-  overflow-y: scroll;
   height: 110vh;
+}
+.scrollable{
+  overflow-y: scroll;
 }
 
 .productsDiv::-webkit-scrollbar {

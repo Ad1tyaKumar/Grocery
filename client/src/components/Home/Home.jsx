@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import Carousel from "react-material-ui-carousel";
 import { Link } from "react-router-dom";
@@ -43,6 +43,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.user);
   const { loading, products, error } = useSelector((state) => state.products);
+  // const 
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -59,6 +60,26 @@ const Home = () => {
     }
     dispatch(getProduct());
   }, [dispatch]);
+  const [isScrollable, setIsScrollable] = useState(false);
+  const topProductsRef = useRef(null);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (topProductsRef.current) {
+        const topPos = topProductsRef.current.getBoundingClientRect().top;
+        setIsScrollable(topPos <= 50);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [])
+
+  useEffect(() => {
+    console.log(isScrollable, 81);
+  }, [isScrollable])
+
   return !catergoryImg ? (
     <Loader />
   ) : (
@@ -134,13 +155,13 @@ const Home = () => {
         </div>
       </div>
 
-      <h3>Top Products</h3>
+      <h3 ref={topProductsRef} className={isScrollable ? "fix" : ""}>Top Products</h3>
       {loading ? (
         <div className="productsDiv">
           <CardSkeleton cards={8} />
         </div>
       ) : (
-        <div className="productsDiv">
+        <div id="productsDiv" className={isScrollable ? "scrollable productsDiv" : "productsDiv"}>
           {products &&
             products
               .slice(
