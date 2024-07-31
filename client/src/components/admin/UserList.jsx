@@ -38,7 +38,7 @@ const UserList = () => {
         };
 
         return (
-            <Select className="roleChangeMenu"value={selectedRole} onChange={handleRoleChange} disabled={user._id === row.id}>
+            <Select className="roleChangeMenu" value={selectedRole} onChange={handleRoleChange} disabled={user._id === row.id}>
                 <MenuItem value="admin">Admin</MenuItem>
                 <MenuItem value="user">User</MenuItem>
             </Select>
@@ -127,7 +127,7 @@ const UserList = () => {
             flex: 0.3,
             renderCell: (params) => {
                 return (<>
-                    <Button disabled={user._id===params.row.id} onClick={() => deleteProductHandler(params.row.id)}>
+                    <Button disabled={user._id === params.row.id} onClick={() => deleteProductHandler(params.row.id)}>
                         <Delete />
                     </Button>
                 </>)
@@ -141,7 +141,7 @@ const UserList = () => {
             id: item._id,
             role: item.role,
             email: item.email,
-            phoneNo: item.phoneNo.toString(),
+            phoneNo: item.phoneNo ? item.phoneNo.toString() : '',
             name: item.name,
         })
     ))
@@ -158,7 +158,7 @@ const UserList = () => {
                 (
                     isAuthenticated ? user.role === 'admin' ?
                         <div className="dashboard">
-                        <MetaData title={`ALL USERS - Admin`} />
+                            <MetaData title={`ALL USERS - Admin`} />
                             <Sidebar />
                             <div className="productListContainer">
                                 <h1 id='productListHeading'>ALL USERS</h1>
